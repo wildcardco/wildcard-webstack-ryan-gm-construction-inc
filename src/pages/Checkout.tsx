@@ -16,19 +16,19 @@ type ReceiptLine = {
 
 export function Checkout() {
   usePageTitle("Preview · GM Construction Inc.");
-  const { lines, clear } = useCart();
+  const { lines } = useCart();
   const [receipt, setReceipt] = useState<ReceiptLine[] | null>(null);
 
   function confirmPreview() {
     if (lines.length === 0) return;
-    const snapshot: ReceiptLine[] = lines.map((line: CartLine) => ({
-      id: line.product.id,
-      name: line.product.name,
-      path: line.product.path,
-      quantity: line.quantity,
-    }));
-    setReceipt(snapshot);
-    clear();
+    setReceipt(
+      lines.map((line: CartLine) => ({
+        id: line.product.id,
+        name: line.product.name,
+        path: line.product.path,
+        quantity: line.quantity,
+      })),
+    );
   }
 
   return (
@@ -43,7 +43,7 @@ export function Checkout() {
             <div className="mt-6">
               <h2 className="display text-5xl">Local test preview only</h2>
               <p className="mt-3 text-lg">
-                Recorded in this browser view. No payment was taken. No email was sent. No order was placed. The request list on this device is now empty.
+                Reviewed on this device only. No payment was taken. No email was sent. No order was placed. The request list stays in this browser.
               </p>
               <ul className="mt-5 border-t border-ink/15">
                 {receipt.map((line) => (

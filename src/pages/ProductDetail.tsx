@@ -27,7 +27,15 @@ export function ProductDetail() {
         </div>
         <div className="ticket relative z-10 -mt-16 p-6 sm:p-8 lg:col-span-5 lg:-ml-20 lg:mt-20">
           <TestBanner />
-          <p className="kicker mt-5">{product.categoryName}</p>
+          <p className="mt-5 text-sm">
+            <Link to="/work" className="text-link">
+              Work
+            </Link>
+            {" / "}
+            <Link to={product.categoryPath} className="text-link">
+              {product.categoryName}
+            </Link>
+          </p>
           <h1 className="display mt-2 text-[clamp(2.8rem,5vw,4.4rem)]">{product.name}</h1>
           <p className="mt-4 text-lg leading-relaxed">{product.summary}</p>
           <ul className="mt-4 list-disc space-y-1 pl-5">
@@ -36,6 +44,10 @@ export function ProductDetail() {
             ))}
           </ul>
           <dl className="mt-6 grid gap-3 border-t border-ink/15 pt-4">
+            <div>
+              <dt className="kicker">Part number</dt>
+              <dd className="font-display text-3xl uppercase">Not verified</dd>
+            </div>
             <div>
               <dt className="kicker">Price</dt>
               <dd className="font-display text-3xl uppercase">{priceLabel}</dd>
@@ -54,6 +66,9 @@ export function ProductDetail() {
             <Link to="/estimate/cart" className="text-link">
               Open the request list
             </Link>
+            <a href={product.image.sourceUrl} className="text-link">
+              Source photo
+            </a>
           </div>
         </div>
       </div>

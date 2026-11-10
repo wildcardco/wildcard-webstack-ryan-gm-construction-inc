@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { business, products } from "../data/catalog";
+import { business, categories, products } from "../data/catalog";
 
 export function Footer() {
   return (
@@ -52,6 +52,13 @@ export function Footer() {
               <li key={product.id}>
                 <Link to={product.path} className="text-link">
                   {product.name}
+                </Link>
+              </li>
+            ))}
+            {categories.map((category) => (
+              <li key={category.id}>
+                <Link to={category.path} className="text-link">
+                  {category.name}
                 </Link>
               </li>
             ))}

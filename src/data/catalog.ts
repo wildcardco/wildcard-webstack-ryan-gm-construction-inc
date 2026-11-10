@@ -73,6 +73,34 @@ export type CatalogImage = {
   sourceUrl: string;
 };
 
+export type Category = {
+  id: string;
+  name: string;
+  path: string;
+  summary: string;
+};
+
+export const categories: Category[] = [
+  {
+    id: "showers",
+    name: "Showers",
+    path: "/work/category/showers",
+    summary: "One photo-backed shower sample. Price and stock are not verified.",
+  },
+  {
+    id: "kitchens",
+    name: "Kitchens",
+    path: "/work/category/kitchens",
+    summary: "One photo-backed kitchen sample. Price and stock are not verified.",
+  },
+  {
+    id: "decks",
+    name: "Decks",
+    path: "/work/category/decks",
+    summary: "One photo-backed deck and stair sample. Price and stock are not verified.",
+  },
+];
+
 export type Product = {
   id: string;
   slug: string;
@@ -80,6 +108,7 @@ export type Product = {
   path: string;
   categoryId: string;
   categoryName: string;
+  categoryPath: string;
   summary: string;
   facts: string[];
   image: CatalogImage;
@@ -93,8 +122,9 @@ export const products: Product[] = [
     slug: "marble-shower",
     name: "Marble-look sliding-glass shower",
     path: "/work/marble-shower",
-    categoryId: "custom-tile-showers",
-    categoryName: "Custom tile showers",
+    categoryId: "showers",
+    categoryName: "Showers",
+    categoryPath: "/work/category/showers",
     summary:
       "Marble-look large-format shower with a sliding glass door, brass hardware, a mosaic floor, and a linear drain.",
     facts: [
@@ -120,8 +150,9 @@ export const products: Product[] = [
     slug: "white-kitchen",
     name: "White shaker kitchen",
     path: "/work/white-kitchen",
-    categoryId: "kitchen-remodeling",
-    categoryName: "Kitchen remodeling",
+    categoryId: "kitchens",
+    categoryName: "Kitchens",
+    categoryPath: "/work/category/kitchens",
     summary:
       "White shaker kitchen with a subway-tile backsplash, black pulls, white counters, and a dark slate floor. The range is still wrapped.",
     facts: [
@@ -148,8 +179,9 @@ export const products: Product[] = [
     slug: "deck-stairs",
     name: "Deck stairs and black metal rail",
     path: "/work/deck-stairs",
-    categoryId: "deck-stair-railings",
-    categoryName: "Deck and stair railings",
+    categoryId: "decks",
+    categoryName: "Decks",
+    categoryPath: "/work/category/decks",
     summary:
       "Exterior deck stairs with white treads, a black metal rail, and brown deck boards.",
     facts: ["Exterior deck stairs", "White treads", "Black metal rail", "Brown deck boards"],
@@ -236,6 +268,10 @@ export const gallery: GalleryPhoto[] = [
     },
   },
 ];
+
+export function getCategory(id: string): Category | undefined {
+  return categories.find((category) => category.id === id);
+}
 
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find((product) => product.slug === slug);

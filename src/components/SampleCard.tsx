@@ -24,7 +24,11 @@ export function SampleCard({
         <PhotoFrame image={product.image} priority={priority} imgClassName={imageClassName} />
       </Link>
       <div>
-        <p className="kicker">{product.categoryName}</p>
+        <p>
+          <Link to={product.categoryPath} className="kicker">
+            {product.categoryName}
+          </Link>
+        </p>
         <Title className="display mt-2 text-[clamp(2.1rem,4vw,3.4rem)] text-paper">
           <Link to={product.path} className="text-link">
             {product.name}

@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { getProductById, previewQuantityCap, type Product } from "../data/catalog";
 
-const STORAGE_KEY = "gmc-request-list-v1";
+const STORAGE_KEY = "gm-construction-request-list";
 
 type StoredLine = {
   id: string;
@@ -35,7 +35,8 @@ function readStored(): StoredLine[] {
     for (const entry of parsed) {
       if (!entry || typeof entry !== "object") continue;
       const id = "id" in entry ? entry.id : undefined;
-      const quantity = "quantity" in entry ? entry.quantity : undefined;
+      const quantity =
+        "qty" in entry ? entry.qty : "quantity" in entry ? entry.quantity : undefined;
       if (typeof id !== "string" || typeof quantity !== "number") continue;
       if (!getProductById(id)) continue;
       const qty = Math.floor(quantity);
@@ -50,7 +51,10 @@ function readStored(): StoredLine[] {
 
 function writeStored(lines: StoredLine[]) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(lines.map((line) => ({ id: line.id, qty: line.quantity }))),
+    );
   } catch {
     /* Private mode can refuse storage. The list still works in memory. */
   }

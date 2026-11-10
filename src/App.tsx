@@ -20,6 +20,7 @@ export function App() {
             <Route index element={<Home />} />
             <Route path="services" element={<Services />} />
             <Route path="work" element={<Work />} />
+            <Route path="work/category/:categoryId" element={<Work />} />
             <Route path="work/:slug" element={<ProductDetail />} />
             <Route path="estimate" element={<Estimate />} />
             <Route path="estimate/cart" element={<CartPage />} />
