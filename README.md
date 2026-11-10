@@ -1,5 +1,14 @@
-# wildcard-webstack-ryan-gm-construction-inc
+# GM Construction Inc.
 
-Web-stack (Vite + React + Tailwind) sample preview for GM Construction Inc. — Wild Card Creative Co.
+Sample catalog preview for GM Construction Inc., a bathroom remodeler at 221 Arrowhead St, Park Forest, IL 60466. The only known website is http://facebook.com/morenogmc.
 
-Noindex sample catalog. Price and stock are unverified. No payment and no real order. Run `npm run build` to typecheck and build.
+Vite, React, and Tailwind. Three photo-backed samples. Prices and stock are not verified. The request list stays in this browser. Checkout is a test preview: no payment and no real order.
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
+
+Pages: `/`, `/services`, `/work`, `/work/category/showers`, `/work/category/kitchens`, `/work/category/decks`, `/work/marble-shower`, `/work/white-kitchen`, `/work/deck-stairs`, `/estimate`, `/estimate/cart`, `/estimate/checkout`, `/contact`.
