@@ -1,0 +1,252 @@
+@import "tailwindcss";
+@import "@fontsource/barlow-condensed/latin-500.css";
+@import "@fontsource/barlow-condensed/latin-600.css";
+@import "@fontsource/barlow-condensed/latin-700.css";
+@import "@fontsource/outfit/latin-400.css";
+@import "@fontsource/outfit/latin-500.css";
+@import "@fontsource/outfit/latin-600.css";
+
+@theme {
+  --font-display: "Barlow Condensed", ui-sans-serif, sans-serif;
+  --font-sans: "Outfit", ui-sans-serif, sans-serif;
+  --color-ink: #1e1e1e;
+  --color-paper: #f3f0ea;
+  --color-stone: #d9d4cc;
+  --color-taupe: #b7a48a;
+  --color-bronze: #8c7344;
+  --color-slate: #4e5856;
+}
+
+/*
+  Signature motion: a bronze measure line draws while the photo wipes open.
+  This is the only animation. prefers-reduced-motion shows the photo at rest.
+*/
+
+.js .measure:not(.is-in) .measure-target {
+  clip-path: inset(0 100% 0 0);
+}
+
+.measure {
+  position: relative;
+  display: block;
+  min-width: 0;
+}
+
+.measure-target {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 100%;
+}
+
+.measure.is-in .measure-target {
+  animation: measure-reveal 1s cubic-bezier(0.16, 0.84, 0.32, 1) var(--delay, 0ms) forwards;
+}
+
+.measure .rule {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #8c7344;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.measure.is-in .rule {
+  animation: measure-rule 1s cubic-bezier(0.16, 0.84, 0.32, 1) var(--delay, 0ms) forwards;
+}
+
+@keyframes measure-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes measure-rule {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .measure:not(.is-in) .measure-target,
+  .measure.is-in .measure-target {
+    animation: none;
+    clip-path: none;
+  }
+
+  .measure .rule,
+  .measure.is-in .rule {
+    animation: none;
+    transform: none;
+  }
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background-color: #1e1e1e;
+  background-image: linear-gradient(180deg, rgba(78, 88, 86, 0.55), transparent 28rem);
+  color: #f3f0ea;
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection {
+  background: #8c7344;
+  color: #1e1e1e;
+}
+
+:focus-visible {
+  outline: 2px solid #8c7344;
+  outline-offset: 3px;
+}
+
+#main:focus {
+  outline: none;
+}
+
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 80;
+  background: #8c7344;
+  color: #1e1e1e;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.kicker {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #8c7344;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 0.84;
+}
+
+.btn,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.45rem 1.05rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.btn {
+  background: #8c7344;
+  color: #1e1e1e;
+}
+
+.btn:hover {
+  background: #f3f0ea;
+}
+
+.btn:disabled {
+  background: #4e5856;
+  color: #d9d4cc;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #f3f0ea;
+  box-shadow: inset 0 0 0 1px #b7a48a;
+}
+
+.btn-ghost:hover {
+  background: #4e5856;
+}
+
+.ticket .btn-ghost {
+  color: #1e1e1e;
+  box-shadow: inset 0 0 0 1px #1e1e1e;
+}
+
+.ticket .btn-ghost:hover {
+  background: #1e1e1e;
+  color: #f3f0ea;
+}
+
+.ticket {
+  position: relative;
+  background: #d9d4cc;
+  color: #1e1e1e;
+  box-shadow: 14px 14px 0 #8c7344;
+}
+
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid #8c7344;
+  pointer-events: none;
+}
+
+.ticket::before {
+  top: 0.55rem;
+  left: 0.55rem;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.ticket::after {
+  right: 0.55rem;
+  bottom: 0.55rem;
+  border-left: 0;
+  border-top: 0;
+}
+
+.text-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #8c7344;
+  text-underline-offset: 0.22em;
+}
+
+.ticket .text-link {
+  color: #1e1e1e;
+}
