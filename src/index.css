@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-paper: #f3f0ea;
+  --color-paper-rgb: 243 240 234;
+  --color-ink: #1e1e1e;
+  --color-ink-rgb: 30 30 30;
+  --color-stone: #b7a48a;
+  --color-stone-rgb: 183 164 138;
+  --color-bronze: #8c7344;
+  --color-bronze-rgb: 140 115 68;
+  --color-mist: #d9d4cc;
+  --color-mist-rgb: 217 212 204;
+  --color-slate: #4e5856;
+  --color-slate-rgb: 78 88 86;
+  --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --header-height: 4.5rem;
+  --page-pad: 1rem;
+}
+
+@layer base {
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  #content {
+    scroll-margin-top: var(--header-height);
+  }
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+@keyframes barn-door-open {
+  from {
+    clip-path: inset(0 50% 0 50%);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.hero-reveal {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-reveal {
+    animation: barn-door-open 1.15s ease forwards;
+  }
+}
